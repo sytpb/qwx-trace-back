@@ -47,7 +47,7 @@ class Trace {
 	async lastStamp(waybillno) {
 		let query = `SELECT LAST(laststamp,tocity) FROM route.trace WHERE waybillno ='${waybillno}';`;
 		let result = await taosDB2.Execute(query);
-		
+	    debug.log(result);	
 		if(result.rows > 0) {
             const [laststamp,tocity] = result.data[0];
 			return [laststamp,tocity];

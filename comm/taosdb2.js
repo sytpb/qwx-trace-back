@@ -3,13 +3,13 @@ const axios = require('axios');
 const util = require('util');
 const debug = require('debug');
 
-const url = 'http://10.0.0.2:6041/rest/%s';
+const url = 'http://127.0.0.1:6041/rest/%s';
 const auth = 'Basic cm9vdDp0YW9zZGF0YQ==';
 
 class taosDB2 {
 
 	constructor() {
-		this.url = 'http://127.0.0.1:6041/rest/sqlt';
+		this.url = url;
 	}
 
     static async Execute(sql,unix=false) {
@@ -28,8 +28,9 @@ class taosDB2 {
                 return data;    
             } 
         } catch(e) {
-            debug.log(e.response.data);
-            debug.log(e.response.config);
+            debug.log(e);
+            debug.log(e?.response?.data);
+            debug.log(e?.response?.config);
         }
     }
 
